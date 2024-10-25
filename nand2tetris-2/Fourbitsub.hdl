@@ -1,0 +1,15 @@
+CHIP Fourbitsub {
+	IN a[4], b[4];
+	OUT out[4];
+
+	PARTS: 
+	Not(in=b[0], out=notb);
+	Not(in=b[1], out=notb1);
+	Not(in=b[2], out=notb2);
+	Not(in=b[3], out=notb3);
+
+	HalfAdder(a=a[0], b=notb, c=true, sum=out[0], carry=d);
+	HalfAdder(a=a[1], b=notb1, c=d, sum=out[1], carry=e);
+	HalfAdder(a=a[2], b=notb2, c=e, sum=out[2], carry=f);
+	HalfAdder(a=a[3], b=notb3, c=f, sum=out[3], carry=drop);
+}

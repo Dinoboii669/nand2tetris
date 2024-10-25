@@ -1,0 +1,29 @@
+CHIP Encoder3x8 {
+    IN in[3];    // 3-bit input signal
+    OUT out[8];  // 8 distinct output signals (1-hot encoding)
+
+    PARTS:
+    // out[0] is active when in = 000
+    And(a=Not(in[0]), b=Not(in[1]), c=Not(in[2]), out=out[0]);
+
+    // out[1] is active when in = 001
+    And(a=in[0], b=Not(in[1]), c=Not(in[2]), out=out[1]);
+
+    // out[2] is active when in = 010
+    And(a=Not(in[0]), b=in[1], c=Not(in[2]), out=out[2]);
+
+    // out[3] is active when in = 011
+    And(a=in[0], b=in[1], c=Not(in[2]), out=out[3]);
+
+    // out[4] is active when in = 100
+    And(a=Not(in[0]), b=Not(in[1]), c=in[2], out=out[4]);
+
+    // out[5] is active when in = 101
+    And(a=in[0], b=Not(in[1]), c=in[2], out=out[5]);
+
+    // out[6] is active when in = 110
+    And(a=Not(in[0]), b=in[1], c=in[2], out=out[6]);
+
+    // out[7] is active when in = 111
+    And(a=in[0], b=in[1], c=in[2], out=out[7]);
+}
